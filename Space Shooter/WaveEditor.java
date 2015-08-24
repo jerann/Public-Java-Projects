@@ -1,5 +1,6 @@
 public class WaveEditor {
 	
+	//Sets what monsters are on each level
 	public void createWave(int wave) {
 		
 		switch (wave) {

@@ -55,6 +55,7 @@ public class AlienManager {
 		}
 	}
 	
+	//Runs at each timer tick
 	class AlienTask extends TimerTask {
 		
 		public void run() {
@@ -70,6 +71,7 @@ public class AlienManager {
 		}
 	}
 	
+	//Draws all aliens
 	public void draw(Graphics2D g2d) {
 		
 		for (int i = 0; i < aliens.size(); ++i) {
@@ -78,7 +80,8 @@ public class AlienManager {
 					aliens.get(i).getY(), null);
 		}
 	}
-
+	
+	//Individual Alien class
 	public class Alien extends Sprite implements Aspects {
 		
 		public boolean isBouncing = false;
@@ -146,6 +149,7 @@ public class AlienManager {
 			}
 		}
 		
+		//Create explosion
 		public void explode() {
 			
 			Board.explosionManager.addExplosion(getX() - (Board.explosionManager.width - 

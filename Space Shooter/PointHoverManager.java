@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Manages the floating points after destroying an enemy
 public class PointHoverManager {
 	
 	ArrayList<PointHover> pointHovers;
@@ -19,6 +20,7 @@ public class PointHoverManager {
 		pointHoverTimer.scheduleAtFixedRate(new pointHoverTask() , 0, 20);
 	}
 	
+	//Draw each pointHover
 	public void draw(Graphics2D g2d) {
 		
 		Font pointFont = new Font("Helvetica", Font.BOLD, 12);
@@ -31,11 +33,13 @@ public class PointHoverManager {
 		}
 	}
 	
+	//Creates new PointHover
 	public void addPointHover (int x, int y, int points) {
 		
 		pointHovers.add(new PointHover(x, y, points));
 	}
 	
+	//Runs each tick of timer
 	class pointHoverTask extends TimerTask {
 		
 		public void run() {
@@ -50,6 +54,7 @@ public class PointHoverManager {
 		}
 	}
 	
+	//Individual PointHover
 	protected class PointHover {
 		
 		int x, y, finalY, points;

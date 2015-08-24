@@ -26,6 +26,8 @@ public class Board extends JPanel implements Aspects {
 	//Objects needed for the game
 	WaveEditor waveEditor;
 	static Ship ship;
+	
+	//This manager convention is probably the best thing I've ever thought of
 	static AlienManager alienManager;
 	static MissileManager missileManager;
 	static ExplosionManager explosionManager;
@@ -91,6 +93,8 @@ public class Board extends JPanel implements Aspects {
 		waveEditor = new WaveEditor();
 		ship = new Ship();
 		heart = new Heart();
+		
+		//Create all managers, internally initialize all individual timers
 		missileManager = new MissileManager();
 		explosionManager = new ExplosionManager();
 		pointHoverManager = new PointHoverManager();

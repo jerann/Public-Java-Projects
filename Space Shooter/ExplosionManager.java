@@ -22,11 +22,13 @@ public class ExplosionManager {
 		explosionTimer.scheduleAtFixedRate(new explosionTask(), 0, 20);
 	}
 	
+	//Creates new explosion
 	public void addExplosion(int x, int y) {
 		
 		explosions.add(new Explosion(x, y));
 	}
 	
+	//Draws all explosions
 	public void draw(Graphics2D g2d) {
 		for (int i = 0; i < explosions.size(); ++i) {
 			
@@ -41,6 +43,7 @@ public class ExplosionManager {
 			
 			for (int i = 0; i < explosions.size(); ++i) {
 				
+				//30 just corresponds to the length of the GIF (30 * 20ms)
 				if (explosions.get(i).explosionTimerCount >= 30) {
 					explosions.remove(i);
 				}
@@ -51,6 +54,7 @@ public class ExplosionManager {
 		}
 	}
 
+	//Individual explosion
 	public class Explosion extends Sprite {
 	
 		int explosionTimerCount;

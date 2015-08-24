@@ -18,6 +18,7 @@ public class MissileManager {
 		
 		missiles = new ArrayList<Missile>();
 		
+		//isValid allows for firing rate limit
 		isValid = true;
 		validCount = 0;
 		
@@ -34,6 +35,7 @@ public class MissileManager {
 				missiles.get(i).move(i);
 			}
 			
+			//Firing rate limit
 			if (!isValid) ++validCount;
 			if (validCount == 20) {
 				isValid = true;
@@ -42,6 +44,7 @@ public class MissileManager {
 		}
 	}
 	
+	//Create new missile
 	public void addMissile(int shipX, int shipY, int mouseX, int mouseY) {
 		
 		if (isValid) {
@@ -50,6 +53,7 @@ public class MissileManager {
 		}
 	}
 	
+	//Draw all missiles
 	public void draw(Graphics2D g2d) {
 		
 		for (int i = 0; i < missiles.size(); ++i) {
@@ -58,6 +62,7 @@ public class MissileManager {
 		}
 	}
 
+	//Individual Missile
 	public class Missile extends Sprite {
 		
 		public double dx, dy;

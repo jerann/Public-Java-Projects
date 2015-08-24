@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 public class PurpBossManager {
 	
+	//Contains each PurpBoss
 	ArrayList<PurpBoss> purpBosses;
 	public ArrayList<PurpBoss.PBBul> PBBuls;
 	
@@ -17,11 +18,13 @@ public class PurpBossManager {
 		purpBosses = new ArrayList<PurpBoss>();
 	}
 	
+	//Creates new PurpBoss
 	public void addPurpBoss() {
 		
 		purpBosses.add(new PurpBoss());
 	}
 	
+	//Draws each PurpBoss and bullet
 	public void draw(Graphics2D g2d) {
 		
 		for (int i = 0; i < purpBosses.size(); ++i) {
@@ -34,7 +37,8 @@ public class PurpBossManager {
 			}
 		}
 	}
-
+	
+	//Individual PurpBoss, containing bullets
 	public class PurpBoss extends Sprite {
 		
 		public int PBHealth;
@@ -50,6 +54,7 @@ public class PurpBossManager {
 			
 			PBBuls = new ArrayList<PBBul>();
 			
+			//Set image
 			ImageIcon ii = new ImageIcon(getClass().getResource("/images/purpBoss.gif"));
 			this.image = ii.getImage();
 			this.image = Transparency.makeColorTransparent(this.image, Color.WHITE);
@@ -73,10 +78,12 @@ public class PurpBossManager {
 			scaredTimer = new Timer();
 		}
 		
+		//Runs each tick of timer
 		class PBTimerTask extends TimerTask {
 			
 			public void run() {
 				
+				//If PurpBoss is alive
 				if (PBHealth > 0) {
 				
 					move();
@@ -93,6 +100,7 @@ public class PurpBossManager {
 					}
 				}
 				
+				//If PurpBoss is dead
 				else {
 					Board.score += points;
 					Board.pointHoverManager.addPointHover(x - 15, y, points);
@@ -105,10 +113,12 @@ public class PurpBossManager {
 			}
 		}
 		
+		//Runs when PurpBoss is shot
 		class scaredTimerTask extends TimerTask {
 			
 			public void run() {
 				
+				//Temporarily change image
 				ImageIcon ii = new ImageIcon(getClass().getResource("/images/purpBoss.gif"));
 				image = ii.getImage();
 				image = Transparency.makeColorTransparent(image, Color.WHITE);
@@ -140,6 +150,7 @@ public class PurpBossManager {
 			}
 		}
 		
+		//Updates position
 		private void move() {
 			
 			if ((x <= 0) || (x >= Aspects.WIDTH - this.image.getWidth(null)))
@@ -187,6 +198,7 @@ public class PurpBossManager {
 			}
 		}
 		
+		//Teleports PurpBoss to new location if hit by ship
 		private void newCoords() {
 			
 			if (Board.ship.getX() < Aspects.WIDTH / 2) setX(150);
@@ -196,16 +208,19 @@ public class PurpBossManager {
 			else setY(150);
 		}
 		
+		//Creates new explosion
 		public void explode() {
 			
 			Board.explosionManager.addExplosion(getX() - (Board.explosionManager.width - getWidth()) / 2,
 					getY() - (Board.explosionManager.width - getHeight()) / 2);
 		}
 		
+		//Individual PurpBoss Bullet class
 		public class PBBul extends Sprite {
 			
 			public PBBul(int x, int y, double dx, double dy) {
 				
+				//Set image
 				ImageIcon iibul = new ImageIcon(getClass().getResource("/images/pbbul.gif"));
 				this.image = iibul.getImage();
 				this.image = Transparency.makeColorTransparent(this.image, Color.WHITE);
@@ -216,6 +231,7 @@ public class PurpBossManager {
 				this.dy = dy;
 			}
 			
+			//Create explosion
 			public void explode() {
 				
 				Board.explosionManager.addExplosion(getX() - (Board.explosionManager.width - getWidth())
