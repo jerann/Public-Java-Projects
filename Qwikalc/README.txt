@@ -1,0 +1,1 @@
+A simple calculator I made for Android to learn the language. Incorporates widgets, a menu, and a toast.
